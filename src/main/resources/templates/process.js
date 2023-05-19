@@ -7,7 +7,8 @@ class User {
     }
 
 }
-function checkUser(username, password) {
+
+async function checkUser(username, password) {
     var user = null;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json;charset=UTF-8');
@@ -26,13 +27,13 @@ function checkUser(username, password) {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/user/checkUser", requestOptions)
+    await fetch("http://localhost:8080/user/checkUser", requestOptions)
         .then(response => response.text())
         .then(result => {
             user = JSON.parse(result);
             console.log(user);
             return user;
-        })
+        })  
         .catch(error => {
             console.log('error', error);
             return null;
@@ -43,8 +44,9 @@ function loginUser() {
     let username = document.getElementById('username-login').value;
     let password = document.getElementById('password-login').value;
     var result = checkUser(username, password);
-    if (result === null) {
-        console.log('login failed');
+    if (result == null) {
+        alert('login failed');
+        console.log(result);
     }
     else {
         alert('login success');
