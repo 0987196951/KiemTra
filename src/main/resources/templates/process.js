@@ -9,22 +9,12 @@ class User {
 }
 
 async function checkUser(username, password) {
-    console.log(username, password);
-    var user
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers.append('Accept', 'application/json');
-    headers.append('Origin', 'http://localhost:8080');
-    headers.append("Accept-Language", "vi-en");
-    headers.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-
     const formdata = new FormData();
     formdata.append("username", username);
     formdata.append("password", password);
 
     const requestOptions = {
         method: 'POST',
-        //headers: headers,
         body: formdata,
         redirect: 'follow'
     };
@@ -58,17 +48,62 @@ async function loginUser(event) {
 
 }
 
-function loginFailed() {
+function loginSucess() {
+    const loginForm = document.getElementById('login-form')
+    loginForm.style.display = "none";
+    const viewBtn = document.getElementsByClassName("view-btn")[0];
+    const addBtnBook = document.getElementsByClassName("add-book-btn")[0];
+    const deleteBtnBook =document.getElementsByClassName("delete-btn")[0];
+    const loginBtn = document.getElementById("login-btn");
+    const signUpBtn = document.getElementById("sign-up-btn");
+    loginBtn.style.display = "none";
+    signUpBtn.style.display = "none";
+    viewBtn.style.display = "block";
+    deleteBtnBook.style.display = "block";
+    addBtnBook.style.display = "block";
+}
+
+async function getBook() {
+    var listBook
+    const requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    const response = await fetch("http://localhost:8080/books", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        listBook = JSON.parse(result);
+        return listBook;
+    }).catch(error => {
+        console.log('error', error);
+        return null;
+    });
+    return response;
+}
+
+async function displayBook() {
+    var listBook = await getBook();
+    console.log(listBook);
+}
+
+function postBook(title, author, genre, releaseDate, image) {
+    const formdata = new FormData();
+    formdata.append("tieuDe", title);
+    formdata.append("tacGia", author);
+    formdata.append("theLoai", genre);
+    formdata.append("ngayPhatHanh", releaseDate);
+    formdata.append("image", image);
     
 }
 
-function loginSucess() {
-    var loginForm = document.getElementById('login-form')
-    loginForm.style.display = "none";
-    var viewBtn = document.getElementsByClassName('view-btn');
-    var addBtnBook = document.getElementsByClassName('add-book-btn');
-    viewBtn.style.display = 'block';
-    addBtnBook.style.display = 'block';
+function submitBook(event) {
+    event.preventDefault();
+    let title = document.getElementById('title');
+    let author = document.getElementById('author');
+    let genre = document.getElementById('genre');
+    let releaseDate = document.getElementById('releaseDate');
+    let image = document.getElementById('image');
+    
 }
 
 function openModal() {

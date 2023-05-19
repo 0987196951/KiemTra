@@ -15,8 +15,8 @@
     <nav>
         <ul>
             <li><a href="#">Trang chủ</a></li>
-            <li><button onclick="showLoginForm()">Đăng nhập</button></li>
-            <li><button onclick="openForm()">Đăng ký</button></li>
+            <li><button onclick="showLoginForm()" id="login-btn">Đăng nhập</button></li>
+            <li><button onclick="openForm()" id="sign-up-btn">Đăng ký</button></li>
         </ul>
     </nav>
 </header>
@@ -37,7 +37,7 @@
         <tbody>
 
         <tr>
-            <td>The Great Gatsby</td>
+            <td asd>The Great Gatsby</td>
             <td>F. Scott Fitzgerald</td>
             <td>Truyện ngắn</td>
             <td>1925-04-10</td>
@@ -50,24 +50,24 @@
         </tbody>
     </table>
 
-    <button class="add-book-btn" onclick="openModal()">Add Book</button>
+    <button class="add-book-btn" onclick="openModal()" style="display: none;">Add Book</button>
 
-    <div class="modal" id="addBookModal">
+    <div  class="modal" enctype="multipart/form-data" id="addBookModal">
         <div class="modal-content">
             <i class="fas fa-times" onclick="closeModal()"></i>
             <h2>Thông tin sách</h2>
             <form>
                 <div class="form-group">
                     <label for="title">Tiêu đề:</label>
-                    <input type="text" id="title" name="title" disabled>
+                    <input type="text" id="title" name="title">
                 </div>
                 <div class="form-group">
                     <label for="author">Tác giả:</label>
-                    <input type="text" id="author" name="author" disabled>
+                    <input type="text" id="author" name="author">
                 </div>
                 <div class="form-group">
                     <label for="genre">Thể loại:</label>
-                    <input type="text" id="genre" name="genre" disabled>
+                    <input type="text" id="genre" name="genre">
                 </div>
                 <div class="form- group">
                     <label for="releaseDate">Ngày phát hành:</label>
@@ -77,11 +77,11 @@
                     <label for="image">Upload ảnh:</label>
                     <input type="file" id="image" name="image">
                 </div>
-                <button type="submit" class="submit-btn">Submit</button>
+                <button type="submit" class="submit-btn" onclick="">Submit</button>
         </div>
     </div>
 
-    <div classs="form" id="login-form">
+    <div classs="form" id="login-form" style="display: none;">
         <div class="form-container">
             <span class="close-icon" onclick="closeForm()"><i class="fas fa-times"></i></span>
             <h2>Đăng Nhập</h2>
