@@ -43,15 +43,18 @@ async function checkUser(username, password) {
 function loginUser() {
     let username = document.getElementById('username-login').value;
     let password = document.getElementById('password-login').value;
-    var result = checkUser(username, password);
-    if (result == null) {
-        alert('login failed');
-        console.log(result);
-    }
-    else {
-        alert('login success');
-        console.log('result', result);
-    }
+    var result = checkUser(username, password).then(result => {
+        if(result != null) {
+            alert('login success');
+            console.log('result', result);
+        }
+        else {
+            alert('login failed');
+            console.log(result);
+        }
+    }).catch(exception =>{
+        console.log(exception);
+    });
 }
 
 function loginFailed() {
