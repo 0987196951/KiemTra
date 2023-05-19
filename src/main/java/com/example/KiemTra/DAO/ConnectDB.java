@@ -7,7 +7,7 @@ public class ConnectDB {
     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/webkt";
+            String url = "jdbc:mysql://localhost:3306/kiemtra";
             String username = "root";
             String password = "Tien170421";
             connection = DriverManager.getConnection(url, username, password);

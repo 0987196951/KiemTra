@@ -48,7 +48,7 @@ public class BookController extends ConnectDB {
                 String theLoai = resultSet.getString("theLoai");
                 Date ngayPhatHanh = resultSet.getDate("ngayPhatHanh");
                 int soTrang = resultSet.getInt("soTrang");
-                results.add(new Book(id, tieuDe, tacGia, theLoai, ngayPhatHanh, soTrang));
+                results.add(new Book(id, tieuDe, tacGia, theLoai, ngayPhatHanh, soTrang, null));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +72,7 @@ public class BookController extends ConnectDB {
                 String theLoai = resultSet.getString("theLoai");
                 Date ngayPhatHanh = resultSet.getDate("ngayPhatHanh");
                 int soTrang = resultSet.getInt("soTrang");
-                book = new Book(id, tieuDe, tacGia, theLoai, ngayPhatHanh, soTrang);
+                book = new Book(id, tieuDe, tacGia, theLoai, ngayPhatHanh, soTrang, null);
             }
         } catch (Exception e) {
             e.printStackTrace();
