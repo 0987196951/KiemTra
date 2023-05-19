@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 @RequestMapping("user")
 public class UserController extends ConnectDB {
     @PostMapping("/checkUser")
-    @CrossOrigin
+    @CrossOrigin(origins = "*",
+            allowedHeaders = "Authorization, Content-type, Access-Control-Allow-Methods, Accept, Accept-Language",
+            methods = {RequestMethod.POST})
     public ResponseEntity<User> isUser(@ModelAttribute User user) {
         User userResponse = null;
         PreparedStatement ps = null;
