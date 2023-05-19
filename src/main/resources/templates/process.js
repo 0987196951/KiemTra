@@ -9,56 +9,57 @@ class User {
 }
 
 async function checkUser(username, password) {
-    var user = null;
-    let headers = new Headers();
+    console.log(username, password);
+    var user
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json;charset=UTF-8');
     headers.append('Accept', 'application/json');
     headers.append('Origin', 'http://localhost:8080');
     headers.append("Accept-Language", "vi-en");
     headers.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    console.log(username, password);
-    var formdata = new FormData();
+
+    const formdata = new FormData();
     formdata.append("username", username);
     formdata.append("password", password);
 
-    var requestOptions = {
+    const requestOptions = {
         method: 'POST',
+        //headers: headers,
         body: formdata,
         redirect: 'follow'
     };
 
-    await fetch("http://localhost:8080/user/checkUser", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            user = JSON.parse(result);
-            console.log(user);
-            return user;
-        })  
-        .catch(error => {
-            console.log('error', error);
-            return null;
-        });
+    const response = await fetch("http://localhost:8080/user/checkUser", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        user = JSON.parse(result);
+        return user;
+    })  
+    .catch(error => {
+        console.log('error', error);
+        return null;
+    });
+    return response;
 }
 
-function loginUser() {
+async function loginUser(event) {
+    event.preventDefault();
     let username = document.getElementById('username-login').value;
     let password = document.getElementById('password-login').value;
-    var result = checkUser(username, password).then(result => {
-        if(result != null) {
-            alert('login success');
-            console.log('result', result);
-        }
-        else {
-            alert('login failed');
-            console.log(result);
-        }
-    }).catch(exception =>{
-        console.log(exception);
-    });
+    var user = await checkUser(username, password);
+    if (user != null) {
+        alert('login success');
+        loginSucess()
+    }
+    else {
+        alert('login failed');
+        console.log(user);
+    }
+
 }
 
 function loginFailed() {
-
+    
 }
 
 function loginSucess() {
