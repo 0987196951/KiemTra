@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi-en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư viện sách</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="process.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+<header>
+    <h1>Thư viện sách</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Trang chủ</a></li>
+            <li><button onclick="showLoginForm()">Đăng nhập</button></li>
+            <li><button onclick="openForm()">Đăng ký</button></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Danh sách sách</h2>
+    <table class="book-table">
+        <thead>
+        <tr>
+            <th>Tiêu đề</th>
+            <th>Tác giả</th>
+            <th>Thể loại</th>
+            <th>Ngày phát hành</th>
+            <th>Số trang</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>The Great Gatsby</td>
+            <td>F. Scott Fitzgerald</td>
+            <td>Truyện ngắn</td>
+            <td>1925-04-10</td>
+            <td>218</td>
+            <td>
+                <button class="view-btn" onclick="openModal()" style="display: none;">View</button>
+                <button class="delete-btn" style="display: none;">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button class="add-book-btn" onclick="openModal()">Add Book</button>
+
+    <div class="modal" id="addBookModal">
+        <div class="modal-content">
+            <i class="fas fa-times" onclick="closeModal()"></i>
+            <h2>Thông tin sách</h2>
+            <form>
+                <div class="form-group">
+                    <label for="title">Tiêu đề:</label>
+                    <input type="text" id="title" name="title" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="author">Tác giả:</label>
+                    <input type="text" id="author" name="author" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Thể loại:</label>
+                    <input type="text" id="genre" name="genre" disabled>
+                </div>
+                <div class="form- group">
+                    <label for="releaseDate">Ngày phát hành:</label>
+                    <input type="date" id="releaseDate" name="releaseDate">
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload ảnh:</label>
+                    <input type="file" id="image" name="image">
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+        </div>
+    </div>
+
+    <div classs="form" id="login-form">
+        <div class="form-container">
+            <span class="close-icon" onclick="closeForm()"><i class="fas fa-times"></i></span>
+            <h2>Đăng Nhập</h2>
+            <form name="login-form" method="post">
+                <div class="form-group">
+                    <label for="username-login">Username:</label>
+                    <input type="text" id="username-login" name="username-login" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-login">Password:</label>
+                    <input type="password" id="password-login" name="password" required>
+                </div>
+                <button type="submit" onclick="loginUser()">Đăng Nhập</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="form" id="register-form" >
+        <div class="form-container">
+            <span class="close-icon" onclick="closeForm()"><i class="fas fa-times"></i></span>
+            <h2>Đăng kí</h2>
+            <form >
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="username" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="sdt">Phone Number :</label>
+                    <input type="text" id="sdt" name="sdt" required>
+                </div>
+                <button type="submit">Đăng kí</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
